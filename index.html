@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הסטודיו של אפרת | פילאטיס ותנועה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Heebo:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F7F4F0;
+            --warm-white: #FDFCFA;
+            --sage: #9BA88D;
+            --sage-light: #C4CEBC;
+            --charcoal: #2C2C2C;
+            --warm-gray: #6B6560;
+            --blush: #E8DDD4;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Elegant Cursor */
+        @media (hover: hover) {
+            body {
+                cursor: default;
+            }
+            a, button {
+                cursor: pointer;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(247,244,240,0.98) 0%, rgba(247,244,240,0) 100%);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(247,244,240,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 40px rgba(0,0,0,0.04);
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 0;
+            width: 0;
+            height: 1px;
+            background: var(--sage);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 6rem 6rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tagline {
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title span {
+            display: block;
+            font-weight: 500;
+            color: var(--sage);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            font-weight: 200;
+            color: var(--warm-gray);
+            max-width: 400px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            padding: 1.2rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: none;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .hero-cta:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(155,168,141,0.3);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(-4px);
+        }
+
+        .hero-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: fadeIn 1.2s ease 0.2s forwards;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to left, transparent 60%, var(--cream) 100%);
+            pointer-events: none;
+        }
+
+        /* Decorative Elements */
+        .deco-line {
+            position: absolute;
+            background: var(--sage-light);
+            opacity: 0.4;
+        }
+
+        .deco-line-1 {
+            width: 1px;
+            height: 120px;
+            top: 30%;
+            left: 2rem;
+            animation: growDown 1s ease 1s forwards;
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+
+        .deco-circle {
+            position: absolute;
+            border: 1px solid var(--sage-light);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .deco-circle-1 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -100px;
+            animation: pulse 8s ease infinite;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 4rem;
+            background: var(--warm-white);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--sage-light), transparent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--sage);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2.5rem 2rem 2rem;
+            background: var(--cream);
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--sage-light);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .feature-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.8rem;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--sage-light);
+            box-shadow: 0 8px 32px rgba(155,168,141,0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(85%) brightness(102%);
+            transition: all 0.6s ease;
+        }
+
+        .feature-card:hover .feature-image {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 40px rgba(201,169,98,0.2);
+        }
+
+        .feature-card:hover .feature-image img {
+            transform: scale(1.1);
+            filter: saturate(100%) brightness(100%);
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--sage-light);
+            z-index: -1;
+        }
+
+        .about-content {
+            padding-right: 2rem;
+        }
+
+        .about-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            padding-right: 2rem;
+            border-right: 2px solid var(--sage-light);
+        }
+
+        .about-text {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Classes Section */
+        .classes {
+            padding: 8rem 4rem;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classes .section-subtitle {
+            color: var(--sage-light);
+        }
+
+        .classes .section-title {
+            color: var(--warm-white);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .class-card {
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--sage);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .class-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--sage);
+        }
+
+        .class-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .class-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .class-type {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--sage-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .class-description {
+            font-size: 0.9rem;
+            font-weight: 200;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .class-details {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .class-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 4rem;
+            background: var(--blush);
+            text-align: center;
+        }
+
+        .contact-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact .section-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            font-weight: 200;
+            color: var(--warm-gray);
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-method-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage);
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        a.contact-method-icon {
+            text-decoration: none;
+        }
+
+        a.contact-method-icon:hover,
+        .contact-method:hover .contact-method-icon {
+            background: var(--sage);
+            color: var(--warm-white);
+        }
+
+        .contact-method-label {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--warm-gray);
+        }
+
+        .contact-method-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--sage);
+            color: var(--warm-white);
+            padding: 1.2rem 3rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: none;
+            transition: all 0.4s ease;
+        }
+
+        .contact-cta:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            background: var(--charcoal);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--warm-white);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--sage);
+            background: var(--sage);
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            font-weight: 200;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes growDown {
+            to { transform: scaleY(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide mobile logo on desktop */
+        .mobile-logo {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 10rem 3rem 4rem;
+                order: 2;
+            }
+
+            .hero-image-container {
+                height: 50vh;
+                order: 1;
+            }
+
+            .hero-image-overlay {
+                background: linear-gradient(to top, var(--cream) 0%, transparent 50%);
+            }
+
+            .features-grid,
+            .classes-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .about-image::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .hero-image-container {
+                order: 1;
+                height: 45vh;
+            }
+
+            .hero-content {
+                order: 2;
+                padding: 2rem 1.5rem 3rem;
+            }
+
+            .hero-image-overlay {
+                background: linear-gradient(to top, var(--cream) 0%, transparent 40%);
+            }
+
+            .mobile-logo {
+                display: block;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .mobile-logo img {
+                height: 80px;
+                width: auto;
+            }
+
+            .hero-tagline {
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+
+            .hero-description {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta {
+                align-self: center;
+            }
+
+            .deco-line, .deco-circle {
+                display: none;
+            }
+
+            .features,
+            .about,
+            .classes,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .classes-grid {
+                grid-template-columns: 1fr !important;
+                max-width: 400px !important;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Efrat Studio - Pilates & Movement">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">אודות</a></li>
+            <li><a href="#features">יתרונות</a></li>
+            <li><a href="#classes">שיעורים</a></li>
+            <li><a href="#contact">צור קשר</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="deco-line deco-line-1"></span>
+            <span class="deco-circle deco-circle-1"></span>
+
+            <div class="mobile-logo">
+                <img src="logo.png" alt="Efrat Studio - Pilates & Movement">
+            </div>
+
+            <p class="hero-tagline">הסטודיו של אפרת - סטודיו פילאטיס בוטיק</p>
+            <h1 class="hero-title">
+                תנועה
+                <span>מתוך איזון</span>
+            </h1>
+            <p class="hero-description">
+                סטודיו פילאטיס אינטימי המשלב ידע מקצועי עם גישה אישית.
+                כאן תגלו את הכוח הפנימי שלכם ותלמדו לנוע בחופשיות ובקלות.
+            </p>
+            <a href="#contact" class="hero-cta">
+                לקביעת שיעור ניסיון
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-image-container">
+            <img src="20260119_183215.jpg" alt="סטודיו פילאטיס" class="hero-image">
+            <div class="hero-image-overlay"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header reveal">
+            <p class="section-subtitle">למה פילאטיס</p>
+            <h2 class="section-title">היתרונות של השיטה</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=300&fit=crop&crop=center" alt="חיזוק הליבה" loading="lazy">
+                </div>
+                <h3 class="feature-title">חיזוק הליבה</h3>
+                <p class="feature-text">
+                    פילאטיס מחזק את שרירי הליבה העמוקים, משפר יציבה ומפחית כאבי גב.
+                    התוצאה: גוף חזק ויציב יותר.
+                </p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=400&h=300&fit=crop&crop=center" alt="גמישות ותנועתיות" loading="lazy">
+                </div>
+                <h3 class="feature-title">גמישות ותנועתיות</h3>
+                <p class="feature-text">
+                    שיפור טווח התנועה של המפרקים והארכת השרירים.
+                    גמישות מוגברת מונעת פציעות ומשפרת את איכות החיים.
+                </p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop&crop=top" alt="מודעות גופנית" loading="lazy">
+                </div>
+                <h3 class="feature-title">מודעות גופנית</h3>
+                <p class="feature-text">
+                    למידה של חיבור עמוק לגוף ולתנועה.
+                    פיתוח יכולת להאזין לגוף ולהבין את צרכיו.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-image reveal">
+            <img src="20260119_183215.jpg" alt="הסטודיו">
+        </div>
+        <div class="about-content reveal">
+            <p class="about-quote">
+                "הפילאטיס לא משנה רק את הגוף, הוא משנה את האופן שבו אנחנו מתייחסים אליו"
+            </p>
+            <p class="about-text">
+                הסטודיו שלי הוא מרחב אינטימי ושקט, מצויד במכשירי פילאטיס מקצועיים -
+                רפורמרים, קדילק וציוד נלווה - המאפשרים אימון מדויק ויעיל.
+            </p>
+            <p class="about-text">
+                עם ניסיון של שנים בהוראת פילאטיס, אני מאמינה בגישה אישית המותאמת לכל
+                מתאמן/ת. כל שיעור נבנה בקפידה כדי לענות על הצרכים והמטרות הייחודיים שלכם.
+            </p>
+            <p class="about-text">
+                בין אם אתם מחפשים לשפר יציבה, להתאושש מפציעה, או פשוט להרגיש טוב יותר
+                בגוף - יחד נמצא את הדרך.
+            </p>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="classes">
+        <div class="section-header reveal">
+            <p class="section-subtitle">סוגי השיעורים</p>
+            <h2 class="section-title">בחרו את השיעור המתאים לכם</h2>
+        </div>
+        <div class="classes-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px;">
+            <div class="class-card reveal">
+                <h3 class="class-name">שיעור פרטי</h3>
+                <p class="class-type">ONE ON ONE</p>
+                <p class="class-description">
+                    שיעור אישי מותאם לחלוטין לצרכים שלכם.
+                    מושלם למתחילים, להתאוששות מפציעה, או לאימון ממוקד מטרה.
+                </p>
+                <div class="class-details">
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        60 דקות
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                        </svg>
+                        1 משתתף/ת
+                    </span>
+                </div>
+            </div>
+            <div class="class-card reveal">
+                <h3 class="class-name">דואט</h3>
+                <p class="class-type">DUET</p>
+                <p class="class-description">
+                    שיעור לשניים. אידיאלי לאימון עם חבר/ה,
+                    בן/בת זוג, או בן משפחה. יחס אישי במחיר נגיש יותר.
+                </p>
+                <div class="class-details">
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        60 דקות
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        2 משתתפים
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-inner reveal">
+            <p class="section-subtitle">בואו נדבר</p>
+            <h2 class="section-title">מוזמנים ליצור קשר</h2>
+            <p class="contact-text">
+                מעוניינים לשמוע עוד? לקבוע שיעור ניסיון?
+                אשמח לענות על כל שאלה.
+            </p>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <a href="tel:+972527201874" class="contact-method-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </a>
+                    <span class="contact-method-label">טלפון</span>
+                    <a href="tel:+972527201874" class="contact-method-value">052-720-1874</a>
+                </div>
+                <div class="contact-method">
+                    <a href="https://wa.me/972527201874" class="contact-method-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+                    <span class="contact-method-label">וואטסאפ</span>
+                    <a href="https://wa.me/972527201874" class="contact-method-value">שליחת הודעה</a>
+                </div>
+            </div>
+            <a href="https://wa.me/972527201874" class="contact-cta">
+                לקביעת שיעור ניסיון
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <img src="logo.png" alt="Efrat Studio - Pilates & Movement">
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+            </a>
+        </div>
+        <p class="footer-copy">© 2026 כל הזכויות שמורות</p>
+    </footer>
+
+    <script>
+        // Scroll-based nav styling
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (top < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
