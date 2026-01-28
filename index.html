@@ -751,6 +751,136 @@
             gap: 0.5rem;
         }
 
+        /* Testimonials Section */
+        .testimonials {
+            padding: 8rem 4rem;
+            background: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 0% 50%, rgba(155,168,141,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 50%, rgba(201,169,98,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .testimonials .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sage-light);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            color: var(--sage-light);
+            line-height: 0.5;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--sage-light);
+        }
+
+        .testimonial-author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .testimonial-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .testimonial-detail {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--sage);
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                max-width: 550px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials {
+                padding: 5rem 1.5rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .testimonial-quote-mark {
+                font-size: 4rem;
+            }
+        }
+
         /* Contact Section */
         .contact {
             padding: 8rem 4rem;
@@ -1074,8 +1204,8 @@
         <ul class="nav-links">
             <li><a href="#efrat">אפרת</a></li>
             <li><a href="#about">הסטודיו</a></li>
-            <li><a href="#features">יתרונות</a></li>
             <li><a href="#classes">שיעורים</a></li>
+            <li><a href="#testimonials">המלצות</a></li>
             <li><a href="#contact">צור קשר</a></li>
         </ul>
     </nav>
@@ -1297,6 +1427,56 @@
                         </svg>
                         2 משתתפים
                     </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="testimonials-bg"></div>
+        <div class="section-header reveal">
+            <p class="section-subtitle">מה אומרים עליי</p>
+            <h2 class="section-title">המלצות</h2>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-mark">״</div>
+                <p class="testimonial-text">
+                    אפרת היא מדריכה מדהימה! היא מקשיבה לגוף, מבינה בדיוק מה צריך ויודעת להתאים את התרגילים לכל אחד.
+                    כבר אחרי כמה שבועות של אימונים הרגשתי שיפור משמעותי ביציבה ובכאבי הגב.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-info">
+                        <span class="testimonial-name">מיכל כ.</span>
+                        <span class="testimonial-detail">מתאמנת כחודשיים</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-mark">״</div>
+                <p class="testimonial-text">
+                    הגעתי לאפרת אחרי פציעה בגב והיא עזרה לי לחזור לתפקוד מלא.
+                    הסבלנות והמקצועיות שלה יוצאות דופן. ממליצה בחום!
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-info">
+                        <span class="testimonial-name">רונית ש.</span>
+                        <span class="testimonial-detail">מתאמנת כ-3 חודשים</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-mark">״</div>
+                <p class="testimonial-text">
+                    האווירה בסטודיו נעימה ואישית. אפרת מצליחה לגרום לי להתאמץ ולהנות בו זמנית.
+                    זה הפך להיות החלק הכי טוב בשבוע שלי.
+                </p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-info">
+                        <span class="testimonial-name">דנה ל.</span>
+                        <span class="testimonial-detail">מתאמנת כ-6 שבועות</span>
+                    </div>
                 </div>
             </div>
         </div>
