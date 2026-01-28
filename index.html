@@ -360,6 +360,251 @@
             line-height: 1.7;
         }
 
+        /* Efrat Section */
+        .efrat-section {
+            padding: 10rem 4rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--blush) 50%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .efrat-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, var(--sage-light) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, var(--sage-light) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .efrat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .efrat-image-wrapper {
+            position: relative;
+        }
+
+        .efrat-image-frame {
+            position: relative;
+            aspect-ratio: 4/3;
+            background: var(--warm-white);
+            border: 1px solid var(--sage-light);
+            overflow: hidden;
+            box-shadow:
+                0 25px 80px rgba(155,168,141,0.15),
+                0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .efrat-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center right;
+            filter: saturate(0.95) contrast(1.02);
+            transition: all 0.6s ease;
+        }
+
+        .efrat-image-wrapper:hover .efrat-image-frame img {
+            filter: saturate(1) contrast(1);
+            transform: scale(1.02);
+        }
+
+        .efrat-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--sage);
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--blush) 100%);
+        }
+
+        .efrat-image-placeholder svg {
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+        }
+
+        .efrat-image-placeholder span {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        .efrat-image-accent {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--sage);
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+
+        .efrat-image-wrapper:hover .efrat-image-accent {
+            top: -20px;
+            right: -20px;
+        }
+
+        .efrat-content {
+            padding-left: 2rem;
+        }
+
+        .efrat-label {
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--sage);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .efrat-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .efrat-title-bar {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--sage));
+            margin-bottom: 1rem;
+        }
+
+        .efrat-role {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--sage);
+            margin-bottom: 2.5rem;
+        }
+
+        .efrat-story {
+            margin-bottom: 3rem;
+        }
+
+        .efrat-story p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+        }
+
+        .efrat-story p:last-child {
+            margin-bottom: 0;
+        }
+
+        .efrat-credentials {
+            display: flex;
+            gap: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--sage-light);
+        }
+
+        .credential-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .credential-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage);
+            transition: all 0.3s ease;
+        }
+
+        .credential-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .credential-item:hover .credential-icon {
+            background: var(--sage);
+            color: var(--warm-white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(155,168,141,0.3);
+        }
+
+        .credential-item span {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 1024px) {
+            .efrat-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .efrat-image-wrapper {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .efrat-content {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .efrat-title-bar {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .efrat-credentials {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .efrat-section {
+                padding: 5rem 1.5rem;
+            }
+
+            .efrat-image-wrapper {
+                max-width: 280px;
+            }
+
+            .efrat-image-accent {
+                top: -10px;
+                right: -10px;
+            }
+
+            .efrat-credentials {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+        }
+
         /* About Section */
         .about {
             padding: 8rem 4rem;
@@ -827,7 +1072,8 @@
             <img src="logo.png" alt="Efrat Studio - Pilates & Movement">
         </div>
         <ul class="nav-links">
-            <li><a href="#about">אודות</a></li>
+            <li><a href="#efrat">אפרת</a></li>
+            <li><a href="#about">הסטודיו</a></li>
             <li><a href="#features">יתרונות</a></li>
             <li><a href="#classes">שיעורים</a></li>
             <li><a href="#contact">צור קשר</a></li>
@@ -902,6 +1148,72 @@
                     למידה של חיבור עמוק לגוף ולתנועה.
                     פיתוח יכולת להאזין לגוף ולהבין את צרכיו.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Efrat Section -->
+    <section id="efrat" class="efrat-section">
+        <div class="efrat-bg-pattern"></div>
+        <div class="efrat-container">
+            <div class="efrat-image-wrapper reveal">
+                <div class="efrat-image-frame">
+                    <img src="efrat.jpg" alt="אפרת דרדיקמן - מדריכת פילאטיס">
+                </div>
+                <div class="efrat-image-accent"></div>
+            </div>
+            <div class="efrat-content reveal">
+                <p class="efrat-label">הכירו אותי</p>
+                <h2 class="efrat-name">אפרת דרדיקמן</h2>
+                <div class="efrat-title-bar"></div>
+                <p class="efrat-role">מדריכת פילאטיס מוסמכת</p>
+
+                <div class="efrat-story">
+                    <p>
+                        הדרך שלי לפילאטיס התחילה מתוך חיפוש אישי אחר תנועה שמרפאת ומחזקת.
+                        גיליתי שיטה שלא רק שינתה את הגוף שלי, אלא את כל הגישה שלי לתנועה ולבריאות.
+                    </p>
+                    <p>
+                        לאחר הכשרה מקיפה והתמחות בשיטת פילאטיס על מכשירים, פתחתי את הסטודיו הביתי שלי –
+                        מרחב אינטימי שבו כל מתאמן/ת מקבל/ת יחס אישי ותכנית אימונים מותאמת.
+                    </p>
+                    <p>
+                        אני מאמינה שפילאטיס הוא הרבה יותר מאימון – זו דרך להתחבר לגוף,
+                        להבין אותו ולתת לו את מה שהוא צריך. בשיעורים שלי תמצאו שילוב של
+                        ידע מקצועי, קשב אמיתי ואווירה תומכת.
+                    </p>
+                </div>
+
+                <div class="efrat-credentials">
+                    <div class="credential-item">
+                        <div class="credential-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <span>הסמכה מקצועית</span>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </div>
+                        <span>ניסיון רב שנים</span>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <span>גישה אישית</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
