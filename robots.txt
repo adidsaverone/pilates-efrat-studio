@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://efratpilates.com/sitemap.xml
